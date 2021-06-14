@@ -1,8 +1,8 @@
 .wrapper{
-  height: 100vh;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(12,1fr);
-  grid-template-rows: 10rem minmax(calc(100% - 20rem), 100%) 10rem;
+  grid-template-rows: 10rem minmax(calc(100vh - 20rem), 100%) 10rem;
 }
 .header-app, .y-calculator,.footer-app{
   grid-column: 1 / -1;
