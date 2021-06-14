@@ -1,10 +1,15 @@
 import React from 'react'
+import Header from './components/Header'
+import Ycalculator from './components/Ycalculator'
+import Footer from './components/Footer'
 import './App.css';
 
 function App() {
   return (
     <div className="wrapper">
-      <h1>Hi yui this is the y - Calculator</h1>
+      <Header />
+      <Ycalculator />
+      <Footer />
     </div>
   );
 }
