@@ -131,13 +131,13 @@ const Ycalculator = () => {
     }
 
     // ---- Centinel function (to verify if there's an operator in calc)
-    const centinel = objetive => {
+    const centinel = objective => {
         const operators = ["/", "x", "-", "+"]
 
         let flag = false
 
         operators.forEach(operator => {
-            if (objetive.includes(operator)) {
+            if (objective[objective.length -1] === operator) {
                 flag = true
             }
         })
@@ -146,24 +146,21 @@ const Ycalculator = () => {
     }
 
     // ---- Reaper function (locate and identify the number, operator and position)
-    const reaper = objetive => {
+    const reaper = objective => {
         const operators = ["/", "x", "-", "+"]
 
         let hook = ''
-        let finder = 0
-        let example = ''
+        let changer = ''
         let box = {}
 
         operators.forEach(operator => {
-            if (objetive.includes(operator)) {
-                finder = objetive.search(`/${operator}/`)
+            if (objective[objective.length -1] === operator) {
                 hook = operator
-                example = objetive.replace(operator, '')
+                changer = objective.replace(operator, '')
 
                 box = {
-                    position: finder,
                     operator: hook,
-                    number: example,
+                    number: changer,
                 }
             }
         })
@@ -172,8 +169,8 @@ const Ycalculator = () => {
     }
 
     // ---- Verify if the objetive is decimal number
-    const isDecimal = objetive => {
-        if (objetive.includes('.')) {
+    const isDecimal = objective => {
+        if (objective.includes('.')) {
             return true
         }
         return false
