@@ -105,7 +105,7 @@ const NumPad = [
         id: 18,
         value: ".",
         cssClass: "button-01",
-        type: "number"
+        type: "dot"
     },
     {
         id: 19,

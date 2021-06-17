@@ -16,6 +16,21 @@ const Ycalculator = () => {
         if ((type === "operator") && (value === "C")) {
             setResult("0")
             setNumber("0")
+        }else if((type === "dot") && (value === ".")){
+            if(centinel(result) === false){
+                if(result.includes('.')){
+                    setResult(result)
+                }else{
+                    setResult(result + value)
+                }
+            }else{
+                if(number.includes('.')){
+                    setNumber(number)
+                }else{
+                    setNumber(number + value)
+                }
+            }
+
         }else if((type === "operator") && (value === "delete")){
             if((centinel(result) === true) && (number === "0")){
                 if(result === "0"){
