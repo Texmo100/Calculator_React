@@ -16,6 +16,32 @@ const Ycalculator = () => {
         if ((type === "operator") && (value === "C")) {
             setResult("0")
             setNumber("0")
+        }else if ((type === "operator") && (value === "+/-")){
+            if(centinel(result) !== true){
+                if(result === "0"){
+                    setResult(result)
+                }else if(result[0] === "-"){
+                    let cutter = result.replace('-', '+')
+                    setResult(cutter)
+                }else if(result[0] === '+'){
+                    let cutter = result.replace('+', '-')
+                    setResult(cutter)
+                }else{
+                    setResult(`-${result}`)
+                }
+            }else{
+                if(number === "0"){
+                    setNumber(number)
+                }else if(number[0] === "-"){
+                    let cutter = number.replace('-', '+')
+                    setNumber(cutter)
+                }else if(number[0] === '+'){
+                    let cutter = number.replace('+', '-')
+                    setNumber(cutter)
+                }else{
+                    setNumber(`-${number}`)
+                }
+            }
         }else if((type === "dot") && (value === ".")){
             if(centinel(result) === false){
                 if(result.includes('.')){
@@ -156,7 +182,7 @@ const Ycalculator = () => {
         operators.forEach(operator => {
             if (objective[objective.length -1] === operator) {
                 hook = operator
-                changer = objective.replace(operator, '')
+                changer = objective.slice(0, -1)
 
                 box = {
                     operator: hook,
