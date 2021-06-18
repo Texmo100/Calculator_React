@@ -6,7 +6,7 @@ const Ycalculator = () => {
     const [result, setResult] = useState("0")
     const [number, setNumber] = useState("0")
 
-    // ---- Render al numpad (numbers and operators)
+    // ---- Render all numpad (numbers and operators)
     const numPadRender = NumPad.map(item => <button key={item.id} className={item.cssClass} onClick={() => buttonHandle(item)}>{item.value}</button>)
 
     // ---- Handle button to control all button's behavior
@@ -248,7 +248,7 @@ const Ycalculator = () => {
         return flag
     }
 
-    // ---- Reaper function (locate and identify the number, operator and position)
+    // ---- Reaper function (locate and identify the number and operator)
     const reaper = objective => {
         const operators = ["/", "x", "-", "+"]
 
@@ -279,12 +279,15 @@ const Ycalculator = () => {
         return false
     }
 
+    // ---- Render function
     return (
         <div className="y-calculator">
+            {/* result display section */}
             <div className="result-display">
                 <p style={number === "0" ? { color: "transparent" } : { color: "#00aaff" }}>{number}</p>
                 <p>{result}</p>
             </div>
+            {/* Numpad section */}
             <div className="num-pad">
                 {numPadRender}
             </div>

@@ -2,6 +2,10 @@
 #root{
   --main-color: #2b2b2b;
   --second-color: #333333;
+  --calculator-color: #292f36;
+  --button-press-color: #323942;
+  --red-brick: #cc3555;
+  --aqua-light: #00aaff;
 }
 /* ---- CSS utilies ---- */
 p{
@@ -50,11 +54,11 @@ p{
 }
 .result-display > p{
   margin-right: 4rem;
-  color: #cc3555;
+  color: var(--red-brick);
 }
 .num-pad{
   height: calc(100% - 15rem);
-  background-color: #292f36;
+  background-color: var(--calculator-color);
   border-radius: 1rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -62,7 +66,7 @@ p{
 }
 .button-01, .button-02{
   grid-column: 1fr;
-  background-color: #292f36;
+  background-color: var(--calculator-color);
   border: 1px solid transparent;
   border-radius: 1rem;
   display: flex;
@@ -73,13 +77,13 @@ p{
 }
 .button-01:hover, .button-02:hover{
   cursor: pointer;
-  background-color:#323942;
+  background-color:var(--button-press-color);
 }
 .button-01{
-  color: #00aaff;
+  color: var(--aqua-light);
 }
 .button-02{
-  color: #cc3555;
+  color: var(--red-brick);
 }
 /* ---- Footer Styles ---- */
 .footer-app{
