@@ -17,7 +17,9 @@ const Ycalculator = () => {
             setResult("0")
             setNumber("0")
         }else if ((type === "operator") && (value === "%")){ // ---- % Operator
-            if(result === '0'){
+            if (result === '0'){
+                setResult('0')
+            }else if (reaper(result).number === '' && (number === '0')){
                 setResult('0')
             }else if((result !== '0') && (centinel(result) === false)){
                 setResult('0')
@@ -142,7 +144,35 @@ const Ycalculator = () => {
         }else if ((type === "operator") && (value === "=")) { // ---- = Operator
             if (centinel(result) === false) {
                 setResult(result)
-            } else {
+            }else if (reaper(result).number === '' && (number === '0')){
+                setResult('0')
+            }else if (reaper(result).number === '' && (number !== '0')){
+                let xNumber = 0
+
+                if (isDecimal(number) === true) {
+                    xNumber = parseFloat(number)
+                } else {
+                    xNumber = parseInt(number)
+                }
+
+                if (reaper(result).operator === "/") {
+                    let calc = 0 / xNumber
+                    setResult(calc.toString())
+                    setNumber('0')
+                } else if (reaper(result).operator === "x") {
+                    let calc = 0 * xNumber
+                    setResult(calc.toString())
+                    setNumber('0')
+                } else if (reaper(result).operator === "-") {
+                    let calc = 0 - xNumber
+                    setResult(calc.toString())
+                    setNumber('0')
+                } else if (reaper(result).operator === "+") {
+                    let calc = 0 + xNumber
+                    setResult(calc.toString())
+                    setNumber('0')
+                }
+            }else {
                 let number1 = 0
                 let number2 = 0
 
