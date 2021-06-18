@@ -13,10 +13,10 @@ const Ycalculator = () => {
     const buttonHandle = (item) => {
         const { type, value } = item
 
-        if ((type === "operator") && (value === "C")) {
+        if ((type === "operator") && (value === "C")) { // ---- C Operator
             setResult("0")
             setNumber("0")
-        }else if ((type === "operator") && (value === "%")){
+        }else if ((type === "operator") && (value === "%")){ // ---- % Operator
             if(result === '0'){
                 setResult('0')
             }else if((result !== '0') && (centinel(result) === false)){
@@ -40,8 +40,30 @@ const Ycalculator = () => {
                     setResult(porcentageCalc.toString())
                     setNumber('0')
                 }
+            }else if((centinel(result) === true) && (number !== '0')){
+                let pNumber1 = 0
+                let pNumber2 = 0
+                let porcentage = 100
+
+                if(isDecimal(result) === true){
+                    pNumber1 = parseFloat(reaper(result).number)
+                    pNumber2 = parseFloat(number)
+                }else{
+                    pNumber1 = parseInt(reaper(result).number)
+                    pNumber2 = parseInt(number)
+                }
+
+                if ((reaper(result).operator === "/")||(reaper(result).operator === "x")) {
+                    let porcentageCalc = (pNumber2 / porcentage)
+                    setResult(porcentageCalc.toString())
+                    setNumber('0')
+                }else if ((reaper(result).operator === "-")||(reaper(result).operator === "+")) {
+                    let porcentageCalc = (pNumber1 * pNumber2) / porcentage
+                    setResult(porcentageCalc.toString())
+                    setNumber('0')
+                }
             }
-        }else if ((type === "operator") && (value === "+/-")){
+        }else if ((type === "operator") && (value === "+/-")){ // ---- +/- Operator
             if(centinel(result) !== true){
                 if(result === "0"){
                     setResult(result)
@@ -67,7 +89,7 @@ const Ycalculator = () => {
                     setNumber(`-${number}`)
                 }
             }
-        }else if((type === "dot") && (value === ".")){
+        }else if((type === "dot") && (value === ".")){ // ---- . Dot
             if(centinel(result) === false){
                 if(result.includes('.')){
                     setResult(result)
@@ -82,7 +104,7 @@ const Ycalculator = () => {
                 }
             }
 
-        }else if((type === "operator") && (value === "delete")){
+        }else if((type === "operator") && (value === "delete")){ // ---- delete Operator
             if((centinel(result) === true) && (number === "0")){
                 if(result === "0"){
                     setResult("0")
@@ -117,7 +139,7 @@ const Ycalculator = () => {
                     }
                 }
             }
-        }else if ((type === "operator") && (value === "=")) {
+        }else if ((type === "operator") && (value === "=")) { // ---- = Operator
             if (centinel(result) === false) {
                 setResult(result)
             } else {
@@ -150,7 +172,7 @@ const Ycalculator = () => {
                     setNumber('0')
                 }
             }
-        } else {
+        } else { // ---- Just write numbers and operators in calc
             if (centinel(result) === true) {
                 if (type === "operator") {
                     setResult(prevState => {
