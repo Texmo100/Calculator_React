@@ -16,6 +16,31 @@ const Ycalculator = () => {
         if ((type === "operator") && (value === "C")) {
             setResult("0")
             setNumber("0")
+        }else if ((type === "operator") && (value === "%")){
+            if(result === '0'){
+                setResult('0')
+            }else if((result !== '0') && (centinel(result) === false)){
+                setResult('0')
+            }else if((centinel(result) === true) && (number === '0')){
+                let pNumber = 0
+                let porcentage = 100
+
+                if(isDecimal(result) === true){
+                    pNumber = parseFloat(reaper(result).number)
+                }else{
+                    pNumber = parseInt(reaper(result).number)
+                }
+
+                if ((reaper(result).operator === "/")||(reaper(result).operator === "x")) {
+                    let porcentageCalc = (pNumber / porcentage) 
+                    setResult(porcentageCalc.toString())
+                    setNumber('0')
+                }else if ((reaper(result).operator === "-")||(reaper(result).operator === "+")) {
+                    let porcentageCalc = (pNumber * pNumber) / porcentage
+                    setResult(porcentageCalc.toString())
+                    setNumber('0')
+                }
+            }
         }else if ((type === "operator") && (value === "+/-")){
             if(centinel(result) !== true){
                 if(result === "0"){
@@ -110,7 +135,7 @@ const Ycalculator = () => {
                 if (reaper(result).operator === "/") {
                     let calc = number1 / number2
                     setResult(calc.toString())
-                    setNumber('')
+                    setNumber('0')
                 } else if (reaper(result).operator === "x") {
                     let calc = number1 * number2
                     setResult(calc.toString())
